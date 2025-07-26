@@ -2,4 +2,4 @@ backend/myenv/
 frontend/node_modules
 backend/.env
 backend/models/
-wheels/
+wheels/wheels/
