@@ -1,6 +1,6 @@
 # 🧠 Medical Image Disease Prediction Backend
 
-This repository contains the **Flask backend** for a medical image analysis platform that:
+This repository contains the **Flask Application** for a medical image analysis platform that:
 - Authenticates users
 - Accepts image uploads (individually or in batch)
 - Predicts diseases using a CNN model
