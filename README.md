@@ -12,12 +12,12 @@ This repository contains the **Flask backend** for a medical image analysis plat
 
 ## 🚀 Features
 
-- ✅ User Signup/Login with JWT
+- ✅ User Signup/Login
 - 🖼️ Image classification using a trained CNN model
 - 🧾 Word report generation (includes image, prediction, and patient details)
 - 📦 Batch prediction with Excel metadata matching
 - 🧠 Prediction history per user
-- 🔐 Secure API with JWT authentication
+- 🔐 Secure API
 - 🗑️ Temporary file cleanup handling
 - 📡 RESTful API endpoints
 
