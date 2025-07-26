@@ -184,13 +184,13 @@ def main():
     num_classes = len(class_names)
     model = create_cnn_model(num_classes)
 
-    history = train_model(model, train_images, train_labels, test_images, test_labels, epochs=50) # Increased Epoch
+    history = train_model(model, train_images, train_labels, test_images, test_labels, epochs=10) # Increased Epoch
 
     # Evaluate the model on the test set
     evaluate_model(model, test_images, test_labels, class_names)
 
     # After training your CNN model
-    model.save('models/new_cnn_model.keras')  # Save as HDF5 format
+    model.save('backend/models/new_cnn_model.keras')  # Save as keras format
 
 if __name__ == "__main__":
     main()
