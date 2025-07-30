@@ -38,7 +38,7 @@ def load_and_preprocess_data(dataset_path):
         labels='inferred',      # Infer labels from subdirectory names
         label_mode='categorical',  # Use one-hot encoding for labels, needed for SMOTE with categorical
         image_size=(64, 64),  # Resize all images to a consistent size
-        batch_size=8,          # Batch size for reading images.  Adjust as needed.
+        batch_size=8,          # Batch size for reading images.
         shuffle=True,           # Shuffle the data to ensure randomness
         seed=42                 # Seed for reproducibility
     )
@@ -55,7 +55,7 @@ def load_and_preprocess_data(dataset_path):
     images_np = np.concatenate(images_np, axis=0)
     labels_np = np.concatenate(labels_np, axis=0)
 
-    # Split the data into training and testing sets (80% train, 20% test).  We do this *before*
+    # Split the data into training and testing sets (80% train, 20% test).  We do this before
     # applying SMOTE, so that we're generating synthetic samples only for the training set.
     train_images_np, test_images_np, train_labels_np, test_labels_np = train_test_split(
         images_np, labels_np, test_size=0.2, random_state=42, stratify=labels_np
@@ -134,7 +134,6 @@ def train_model(model, train_images, train_labels, val_images, val_labels, epoch
     # No data augmentation for the validation set
     val_generator = ImageDataGenerator().flow(val_images, val_labels, batch_size=32)
 
-    # Use a smaller batch size if you run into memory issues.
     history = model.fit(
         train_generator,
         epochs=epochs,
@@ -173,9 +172,8 @@ def main():
     """
     Main function to orchestrate the loading, preprocessing, augmentation, model creation, training, and evaluation.
     """
-    # Set the path to your dataset.  Replace this with the actual path to the directory
-    # containing your image data.
-    dataset_path = 'data'  # Change this to the path of your dataset
+
+    dataset_path = 'data'
 
     # Load and preprocess the data
     train_images, train_labels, test_images, test_labels, class_names = load_and_preprocess_data(dataset_path)
@@ -189,7 +187,6 @@ def main():
     # Evaluate the model on the test set
     evaluate_model(model, test_images, test_labels, class_names)
 
-    # After training your CNN model
     model.save('backend/models/new_cnn_model.keras')  # Save as keras format
 
 if __name__ == "__main__":
