@@ -19,6 +19,7 @@ git-filter-repo==2.47.0
 google-pasta==0.2.0
 greenlet==3.2.3
 grpcio==1.73.1
+gunicorn==23.0.0
 h5py==3.14.0
 idna==3.10
 imbalanced-learn==0.13.0

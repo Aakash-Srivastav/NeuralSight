@@ -39,6 +39,7 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 jwt = JWTManager(app)
 CORS(app, resources={r"/api/*": {"origins": "http://localhost:3000"}})
+# CORS(app, resources={r"/api/*": {"origins": "https://disease-prediction-frontend-v7.onrender.com"}})
 
 # Global list to track temporary files for cleanup
 temp_files_to_cleanup = []
@@ -106,16 +107,16 @@ class DiseasePredictor:
         # confidence = random.uniform(0.7, 0.95)
 
         recommendations = {
-            'Central Serous Chorioretinopathy-Color Fundus': 'Consult a doctor immediately.',
-            'Diabetic Retinopathy': 'Consult a doctor immediately.',
-            'Disc Edema': 'Consult a doctor immediately.',
-            'Glaucoma': 'Consult a doctor immediately.',
-            'Healthy': 'Continue maintaining good health habits.',
-            'Macular Scar': 'Consult a doctor immediately.',
-            'Myopia': 'Consult a doctor immediately.',
-            'Pterygium': 'Self-isolate and seek medical attention.',
-            'Retinal Detachment': 'Seek immediate medical attention.',
-            'Retinitis Pigmentosa': 'Consult an ophthalmologist.'
+            'Central Serous Chorioretinopathy-Color Fundus': 'Avoid stress and corticosteroid use to reduce the risk of fluid buildup under the retina.',
+            'Diabetic Retinopathy': 'Maintain strict blood sugar control and get regular eye exams to prevent vision loss.',
+            'Disc Edema': 'Monitor and manage blood pressure and seek immediate medical attention for any signs of optic nerve swelling.',
+            'Glaucoma': 'Get routine eye pressure checks and use prescribed eye drops consistently to protect optic nerves.',
+            'Healthy': 'Maintain a balanced diet, wear UV-protective sunglasses, and schedule annual comprehensive eye exams.',
+            'Macular Scar': 'Avoid smoking and monitor vision regularly to detect changes early.',
+            'Myopia': 'Limit screen time, take regular breaks during near work, and spend time outdoors daily.',
+            'Pterygium': ' Protect your eyes from UV rays and dust by wearing sunglasses and hats outdoors.',
+            'Retinal Detachment': 'Seek urgent care for sudden floaters, flashes, or vision loss to prevent permanent damage.',
+            'Retinitis Pigmentosa': ' Protect eyes from bright sunlight and consult a specialist for genetic counseling and management options.'
         }
 
         return {
@@ -269,10 +270,11 @@ def generate_word_report(prediction_data):
         results_table = doc.add_table(rows=4, cols=2)
         results_table.style = 'Table Grid'
         
+        
         results_info = [
             ('Image Filename:', prediction_data.get('image_filename', 'N/A')),
             ('Detected Condition:', prediction_data.get('disease', 'N/A')),
-            ('Confidence Level:', f"{prediction_data.get('confidence', 0) * 100:.1f}%"),
+            ('Confidence Level:', prediction_data.get('confidence', 0)),
             ('Analysis Date:', prediction_data.get('timestamp', datetime.utcnow()).strftime('%Y-%m-%d %H:%M:%S'))
         ]
         
@@ -284,8 +286,8 @@ def generate_word_report(prediction_data):
         doc.add_heading('Recommendations', level=1)
         doc.add_paragraph(prediction_data.get('recommendations', 'No specific recommendations available.'))
         
-        # Disclaimer
-        doc.add_heading('Important Disclaimer', level=1)
+        # Medication
+        doc.add_heading('Medication', level=1)
         medication = (
             "This is your medication"
         )

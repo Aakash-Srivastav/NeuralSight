@@ -25,3 +25,6 @@ ENV FLASK_RUN_HOST=0.0.0.0
 
 # Start Flask server
 CMD ["flask", "run"]
+
+# # Run with Gunicorn in production mode
+# CMD ["gunicorn", "-b", "0.0.0.0:5000", "app_new:app"]
