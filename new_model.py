@@ -172,8 +172,9 @@ def main():
     """
     Main function to orchestrate the loading, preprocessing, augmentation, model creation, training, and evaluation.
     """
-
-    dataset_path = 'data'
+    # Set the path to your dataset.  Replace this with the actual path to the directory
+    # containing your image data.
+    dataset_path = 'data'  # Change this to the path of your dataset
 
     # Load and preprocess the data
     train_images, train_labels, test_images, test_labels, class_names = load_and_preprocess_data(dataset_path)
